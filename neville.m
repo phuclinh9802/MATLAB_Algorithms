@@ -1,0 +1,12 @@
+function [a,Px]=neville(f,x0,x);
+    n=length(x0)-1;
+    a(:,1)= x0;
+    if isstr(f) ~=1;
+        a(:,2)=f;
+    end;
+    for i=2:n+1;
+        for j=3:i+1;
+            a(i,j)=((x-x0(i))*a(i-1,j-1)-(x-x0(i-j+2))*a(i,j-1))/(x0(i-j+2)-x0(i));
+        end;
+    end;
+Px=a(n+1,n+2);
